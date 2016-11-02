@@ -1,0 +1,36 @@
+require 'rake'
+require 'rspec/core/rake_task'
+
+suites = Dir.glob('*').select{|entry| File.directory?(entry) }
+
+
+class ServerspecTask < RSpec::Core::RakeTask
+
+  attr_accessor :projectdir
+
+  def spec_command
+
+    if projectdir.nil?
+      puts "specify either env PROJECT_DIR or project_dir="
+      exit 1
+    end
+
+    cmd = super
+    "env PROJECT_DIR=#{projectdir} STANDALONE_SPEC=true #{cmd}  --format documentation --no-profile"
+  end
+
+end
+
+namespace :serverspec do
+  suites.each do |suite|
+    desc "Run serverspec suite #{suite}"
+    ServerspecTask.new(suite.to_sym) do |t|
+      t.projectdir = ENV['PROJECT_DIR'] || ENV['project_dir']
+      ENV['TARGET_HOST'] = 'localhost'
+      ENV['PROJECTDIR'] = t.projectdir
+      t.verbose = false
+      t.ruby_opts = "-I #{suite}"
+      t.pattern = "#{suite}/*_spec.rb"
+    end
+  end
+end

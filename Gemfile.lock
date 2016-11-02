@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    cfndsl (0.11.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  cfndsl (~> 0.11.5)
+
+BUNDLED WITH
+   1.13.5
