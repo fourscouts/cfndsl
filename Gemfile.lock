@@ -8,7 +8,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cfndsl (~> 0.11.5)
+  cfndsl (~> 0.11.6)
   json (~> 1.8)
 
 BUNDLED WITH

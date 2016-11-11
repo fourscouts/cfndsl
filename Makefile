@@ -1,6 +1,6 @@
 DOCKER_IMAGE = fourstacks/cfndsl
 HADOLINT_DOCKER = fourstacks/hadolint:release-0.1
-SERVERSPEC_DOCKER = fourstacks/serverspec:release-0.3.5
+SERVERSPEC_DOCKER = fourstacks/serverspec:release-0.3.7
 
 .PHONY: test build
 
